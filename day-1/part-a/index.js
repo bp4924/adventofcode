@@ -11,15 +11,11 @@ function readFile(callback) {
     var list = data.split("\r\n");
 
     console.log("item count: " + list.length);
-    console.log("new List (from text file): " + list);
+    //    console.log("new List (from text file): " + list);
     callback(list);
   });
 }
 //const stringArray = newList;
-readFile((newList) => {
-  console.log("list: " + newList + " line 15 -- this should show the list");
-});
-console.log();
 
 console.log(
   "newList: " + newList + " line 31 -- this should show the new list"
@@ -42,10 +38,14 @@ const stringArray = [
 
 console.log("stringArray (hard coded): " + stringArray);
 console.log("----");
+console.log("newList: " + newList + " line 47");
+console.log();
+
+console.log("----");
 let firstDigit = null;
 let lastDigit = null;
 
-const digits = function (string) {
+function digits(string) {
   for (var i = 0; i < string.length; i++) {
     if (!isNaN(string[i]) && string[i] != " ") {
       firstDigit = string[i];
@@ -64,12 +64,19 @@ const digits = function (string) {
 
   //  console.log(firstDigit, lastDigit, total);
   return total;
-};
+}
 
 let answer = +"0";
 let runningTotal = +"0";
 
 console.log("running totals ");
+
+readFile((newList) => {
+  console.log(
+    "callback list: " + newList + " line 77 -- this should show the list"
+  );
+  console.log();
+});
 
 for (const string of stringArray) {
   //  console.log(string);
