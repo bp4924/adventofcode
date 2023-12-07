@@ -24,3 +24,13 @@ In this example, the calibration values of these four lines are 12, 38, 15, and 
 Consider your entire calibration document. What is the sum of all of the calibration values?
 
 Final answer is 55607
+
+## Key techniques and challenges
+
+readFile function to convert the text file into an array of strings - be sure the txt file does not end with a blank line
+
+digit function to iterate through the string both directions. used double loops, including a reverse loop - had to use j >= 0 for the reverse loop to get it to read the first character (duh!!). The reverse loop needs to return the same digit as the forward loop if there is only one digit.
+
+handle strings with no digits - at one point, the digits function was adding the most recent total to the running total, doubling the previous input. I solved this by initializing firstDigit and lastDigit to 0, then testing after the loops to clear the total if they were both 0. (typing this, I realize that I could probably initialize total at the beginning of the function instead, and eliminate the test.)
+
+callback function wrapping the logic - struggled with passing the digits out of the digit function.
