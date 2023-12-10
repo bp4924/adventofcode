@@ -90,8 +90,9 @@ readFile((newList) => {
   for (const string of stringArray) {
     //    let stringN = parseString(string);
     console.log(string);
+    result = replaceWords(string, wordToDigit);
     let prevTotal = runningTotal;
-    answer = Number(digits(string));
+    answer = Number(digits(result));
     runningTotal = prevTotal + answer;
     console.log("running total: " + runningTotal);
   }
