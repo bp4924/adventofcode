@@ -19,65 +19,42 @@ function readFile(callback) {
 
 console.log("----");
 
-function parseString(str) {
-  const wordToDigit = {
-    zero: "0",
-    one: "1",
-    two: "2",
-    three: "3",
-    four: "4",
-    five: "5",
-    six: "6",
-    seven: "7",
-    eight: "8",
-    nine: "9",
-  };
-  let result = "";
-  const words = str;
-  for (let i = 0; i <= words.length; i++) {
-    if (words[i] == " ") {
-      console.log("end of string");
-      break;
-    }
-    if (isNaN(words[i])) {
-      console.log("letter");
-      console.log("item = " + words[i]);
-      break;
-    } else {
-      console.log("digit");
-      console.log("item = " + words[i]);
-      result += wordToDigit[words[i]];
-    }
+function replaceWords(str, wordToDigit) {
+  let result = str;
+  for (const [word, digit] of Object.entries(wordToDigit)) {
+    const regex = new RegExp(word, "g");
+    result = result.replace(regex, digit);
   }
-  console.log(result);
-
   return result;
 }
 
-console.log(parseString("twoonenine")); // Output: 219
+const str = "abcone2threexyz";
+const wordToDigit = {
+  zero: "0",
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
+};
+console.log("replace words: " + replaceWords(str, wordToDigit)); // Output: 'abc123xyz'
 
 function digits(string) {
   let firstDigit = 0;
   let lastDigit = 0;
 
-  //  const str = "4nineeightseven2";
-  /*
-  const numbers = [];
-  for (let i = 0; i < str.length; i++) {
-    const charCode = str.charCodeAt(i);
-    if (charCode >= 48 && charCode <= 57) {
-      numbers.push(charCode - 48);
-    }
-  }
-  console.log(numbers);
-  return numbers;
-  */
-
   for (var i = 0; i < string.length; i++) {
     console.log("character: " + string[i]);
+
     if (!isNaN(string[i]) && string[i] != " ") {
       firstDigit = string[i];
       break;
+    } else {
+      console.log("letter");
     }
   }
 
@@ -109,6 +86,7 @@ readFile((newList) => {
   console.log();
 
   const stringArray = newList;
+  console.log("new list: " + newList);
   for (const string of stringArray) {
     //    let stringN = parseString(string);
     console.log(string);
