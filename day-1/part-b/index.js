@@ -19,16 +19,20 @@ function readFile(callback) {
 
 console.log("----");
 
+// midify string to replace words with digits
 function replaceWords(str, wordToDigit) {
+  //  str = "eightwothree";
   let result = str;
   for (const [word, digit] of Object.entries(wordToDigit)) {
-    const regex = new RegExp(word, "g");
-    result = result.replace(regex, digit);
+    while (result.includes(word)) {
+      result = result.replace(word, digit);
+      console.log("result: " + result);
+    }
   }
   return result;
 }
 
-const str = "abcone2threexyz";
+//const str = "abcone2threexyz";
 const wordToDigit = {
   zero: "0",
   one: "1",
@@ -41,7 +45,7 @@ const wordToDigit = {
   eight: "8",
   nine: "9",
 };
-console.log("replace words: " + replaceWords(str, wordToDigit)); // Output: 'abc123xyz'
+//console.log("replace words: " + replaceWords(str, wordToDigit)); // Output: 'abc123xyz'
 
 function digits(string) {
   let firstDigit = 0;

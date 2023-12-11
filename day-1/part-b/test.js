@@ -1,39 +1,62 @@
-function parseString(str) {
-  const wordToDigit = {
-    zero: "0",
-    one: "1",
-    two: "2",
-    three: "3",
-    four: "4",
-    five: "5",
-    six: "6",
-    seven: "7",
-    eight: "8",
-    nine: "9",
-  };
-  let result = "";
-  let currentWord = "";
-  for (let i = 0; i < str.length; i++) {
-    if (/[a-zA-Z]/.test(str[i])) {
-      currentWord += str[i];
-      console.log(str[i]);
-    } else {
-      if (wordToDigit[currentWord]) {
-        result += wordToDigit[currentWord];
-      } else {
-        result += currentWord;
+function replaceWords(str, wordToDigit) {
+  let result = str.split("");
+  let newResult = "";
+  //interate through string
+  for (i = 0; i < str.length; i++) {
+    //create 5 letter strings for each character
+    // next i if character is a number
+    if (!isNaN(result[i])) {
+      console.log("number:" + result[i]);
+      i++;
+      //break;
+    }
+    for (j = i; j < i + 5; j++) {
+      if (j >= str.length) {
+        console.log("end");
+        break;
       }
-      currentWord = "";
-      result += str[i];
+      newResult = newResult + result[j];
+      if (newResult.length == 5) {
+        if (newResult.includes(wordToDigit.word)) {
+          console.log("YES!!");
+        }
+        //  console.log("new result: " + newResult);
+      }
+    }
+    // replace words
+    /*    for (const [word, digit] of Object.entries(wordToDigit)) {
+      while (result.includes(word)) {
+        result = newResult.replace(word, digit);
+        console.log(result);
+      }
+    }*/
+    newResult = "";
+  }
+  /* let newResult = "";
+  for (const [word, digit] of Object.entries(wordToDigit)) {
+    while (result.includes(word)) {
+      result = result.replace(word, digit);
+      console.log(str, result);
     }
   }
-  if (wordToDigit[currentWord]) {
-    result += wordToDigit[currentWord];
-  } else {
-    result += currentWord;
-  }
+  */
   return result;
 }
 
-console.log("result= " + parseString("abone2threexyz"));
-// Output: 1one23xyz
+const str = "three8eightthree";
+const wordToDigit = {
+  zero: "0",
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
+};
+
+result = replaceWords(str, wordToDigit);
+console.log("sum: " + result);
+// Output: '823'
