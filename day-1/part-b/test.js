@@ -16,10 +16,11 @@ function replaceWords(str, wordToDigit) {
         break;
       }
       newResult = newResult + result[j];
-      if (newResult.length == 5) {
-        if (newResult.includes(wordToDigit.word)) {
-          console.log("YES!!");
-        }
+      if (newResult.length >= 3) {
+        //        if (newResult.includes(wordToDigit.word)) {
+        console.log(newResult.length);
+
+        //    }
         //  console.log("new result: " + newResult);
       }
     }
